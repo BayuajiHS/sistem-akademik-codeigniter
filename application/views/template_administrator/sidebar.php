@@ -34,7 +34,7 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Submenu Akademik</h6>
-          <a class="collapse-item" href="buttons.html">Jurusan</a>
+          <a class="collapse-item" href="<?php echo base_url('administrator/jurusan') ?>">Jurusan</a>
           <a class="collapse-item" href="cards.html">Program Studi</a>
           <a class="collapse-item" href="buttons.html">Matakuliah</a>
           <a class="collapse-item" href="cards.html">Mahasiswa</a>
@@ -72,7 +72,7 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Submenu Info Kampus</h6>
-          <a class="collapse-item" href="login.html">Identitas</a>
+          <a class="collapse-item" href="<?php echo base_url('administrator/jurusan') ?>">Identitas</a>
           <a class="collapse-item" href="register.html">Kategori</a>
           <a class="collapse-item" href="forgot-password.html">Informasi Kampus</a>
           <a class="collapse-item" href="404.html">Tentang Kampus</a>
