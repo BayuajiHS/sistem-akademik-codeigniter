@@ -17,8 +17,8 @@
         <div class="form-group">
             <label>Nama Jurusan</label>
             <select name="nama_jurusan" class="form-control">
-                <option value="<?php echo $pr->nama_jurusan ?>"><?php echo $pr->nama_jurusan ?></option>
-
+            <option value="<?php echo $pr->nama_jurusan ?>"><?php echo $pr->nama_jurusan ?></option>
+                
                 <?php foreach($jurusan as $jrs) : ?>
                     <option value="<?php echo $jrs->nama_jurusan ?>"><?php echo $jrs->nama_jurusan ?></option>
                 <?php endforeach; ?>
