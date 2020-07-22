@@ -51,6 +51,65 @@
             }
         }
 
+        public function update($id)
+        {
+            $where = array(
+                'id_prodi'  => $id
+            );
+
+            $data['prodi']      = $this->db->query("select * from prodi prd, jurusan jrs where prd.nama_jurusan=jrs.nama_jurusan and prd.id_prodi='$id'")->result();
+            $data['jurusan']    = $this->prodi_model->tampil_data('jurusan')->result();
+
+            $this->load->view('template_administrator/header');
+            $this->load->view('template_administrator/sidebar');
+            $this->load->view('administrator/prodi_update', $data);
+            $this->load->view('template_administrator/footer');
+        }
+
+        public function update_aksi()
+        {
+            $id             = $this->input->post('id_prodi');
+            $kode_prodi     = $this->input->post('kode_prodi');
+            $nama_prodi     = $this->input->post('nama_prodi');
+            $nama_jurusan   = $this->input->post('nama_jurusan');
+
+            $data = array (
+                'kode_prodi'    => $kode_prodi,
+                'nama_prodi'    => $nama_prodi,
+                'nama_jurusan'  => $nama_jurusan,
+            );
+
+            $where = array (
+                'id_prodi'    => $id,
+            );
+
+            $this->prodi_model->update_data($where,$data,'prodi');
+            $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    Data Prodi Berhasil Diupdate!
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>');
+            redirect('administrator/prodi');
+        }
+
+        public function delete($id)
+        {
+            $where = array(
+                'id_prodi'  => $id
+            );
+
+            $this->prodi_model->hapus_data($where,'prodi');
+
+            $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    Data Prodi Berhasil Dihapus!
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>');
+            redirect('administrator/prodi');
+        }
+
         public function __rules()
         {
             $this->form_validation->set_rules('kode_prodi','kode_prodi','required',[
@@ -65,5 +124,6 @@
                 'required' => 'Nama Jurusan wajib diisi!'
             ]);
         }
+        
     }
 ?>
