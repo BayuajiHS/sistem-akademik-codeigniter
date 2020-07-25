@@ -27,5 +27,14 @@
             $this->db->where($where);
             $this->db->delete($table);
         }
+
+        public $id_thn_akad         = 'id_thn_akad';
+        public $table               = 'tahun_akademik';
+
+        public function get_by_id($id)
+        {
+            $this->db->where($this->id_thn_akad, $id);
+            return $this->db->get($this->table)->row();
+        }
     }
 ?>
