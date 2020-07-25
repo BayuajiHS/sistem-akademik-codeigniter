@@ -27,7 +27,7 @@
         </table>
     </center>
 
-    <?php echo anchor('administrator/krs/tambah_krs','<button class="btn btn-primary btn-sm mt-3"><i class="fas fa-plus fa-sm"></i> Tambah Data KRS</button>') ?>
+    <?php echo anchor('administrator/krs/tambah_krs/'.$nim.'/'.$id_thn_akad,'<button class="btn btn-primary btn-sm mt-3"><i class="fas fa-plus fa-sm"></i> Tambah Data KRS</button>') ?>
     <?php echo anchor('administrator/krs/print','<button class="btn btn-info btn-sm mt-3"><i class="fas fa-print fa-sm"></i> Print</button>') ?>
 
     <table class="table table-bordered table-striped table-hover mt-2">
@@ -39,6 +39,7 @@
             <th colspan="2">AKSI</th>
         </tr>
         <?php
+            $jumlahSks=0;
             $no=1;
             foreach($krs_data as $krs) : 
         ?> <!-- $krs_data didapatkan dari controller KRS line ke 49 !-->
@@ -51,13 +52,14 @@
                             $jumlahSks = $jumlahSks + $krs->sks;
                 ?>
             </td>
-            <td><?php echo anchor('administrator/krs/update/'.$krs->id_krs.'<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
-            <td><?php echo anchor('administrator/krs/delete/'.$krs->id_krs.'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
+            <td><?php echo anchor('administrator/krs/update/'.$krs->id_krs,'<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
+            <td><?php echo anchor('administrator/krs/delete/'.$krs->id_krs,'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
         </tr>
+
+        <?php endforeach; ?>
         <tr>
             <td colspan="3" align="right"><strong>JUMLAH SKS</strong></td>
-            <td><strong><?php echo $jumlahSks?></strong></td>
+            <td colspan="3"><strong><?php echo $jumlahSks?></strong></td>
         </tr>
-        <?php endforeach; ?>
     </table>
 </div>
