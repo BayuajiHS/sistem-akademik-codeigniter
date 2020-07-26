@@ -10,7 +10,7 @@
 
             $this->load->view('template_administrator/header');
             $this->load->view('template_administrator/sidebar');
-            $this->load->view('administrator/masuk_krs');
+            $this->load->view('administrator/masuk_krs',$data);
             $this->load->view('template_administrator/footer');
         }
 
@@ -121,9 +121,73 @@
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>');
-                redirect('administrator/krs/krs_aksi');
+                redirect('administrator/krs/index');
 
             }
+        }
+
+        public function update($id)
+        {
+            $row = $this->krs_model->get_by_id($id);
+            $th = $row->id_thn_akad;
+
+            if($row)
+            {
+                $data = array(
+                    'id_krs'            => set_value('id_krs', $row->id_krs),
+                    'id_thn_akad'       => set_value('id_thn_akad', $row->id_thn_akad),
+                    'nim'               => set_value('nim', $row->nim),
+                    'kode_matakuliah'   => set_value('kode_matakuliah', $row->kode_matakuliah),
+                    'thn_akad_smt'      => $this->tahunakademik_model->get_by_id($th)->tahun_akademik,
+                    'semester'          => $this->tahunakademik_model->get_by_id($th)->semester=='Ganjil'?'Ganjil':'Genap',
+                );
+
+                $this->load->view('template_administrator/header');
+                $this->load->view('template_administrator/sidebar');
+                $this->load->view('administrator/krs_update',$data);
+                $this->load->view('template_administrator/footer');
+            }
+            else
+            {
+                echo "Data Tidak Ada!";
+            }
+        }
+
+        public function krs_update_aksi()
+        {
+            $id_krs             = $this->input->post('id_krs');
+            $nim                = $this->input->post('nim');
+            $id_thn_akad        = $this->input->post('id_thn_akad');
+            $kode_matakuliah    = $this->input->post('kode_matakuliah');
+
+            $data = array(
+                'id_krs'                => $id_krs,
+                'nim'                   => $nim,
+                'id_thn_akad'           => $id_thn_akad,
+                'kode_matakuliah'       => $kode_matakuliah,
+            );
+
+            $this->krs_model->update_data($id_krs,$data);
+
+            $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    Data KRS Berhasil Diupdate!
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>');
+            redirect('administrator/krs/index');
+        }
+
+        public function delete($id)
+        {
+            $this->krs_model->delete($id);
+            $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    Data KRS Berhasil Dihapus!
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>');
+            redirect('administrator/krs/index');
         }
 
         public function __rulesKrs()

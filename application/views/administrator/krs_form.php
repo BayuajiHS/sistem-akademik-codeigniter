@@ -30,6 +30,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-        <?php echo anchor('administrator/krs/krs_aksi','<div class="btn btn-danger btn-sm">< Kembali</div>') ?>
+        <?php echo anchor('administrator/krs','<div class="btn btn-danger btn-sm">< Kembali</div>') ?>
     </form>
 </div>

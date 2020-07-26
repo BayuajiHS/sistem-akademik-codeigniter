@@ -52,8 +52,8 @@
                             $jumlahSks = $jumlahSks + $krs->sks;
                 ?>
             </td>
-            <td><?php echo anchor('administrator/krs/update/'.$krs->id_krs,'<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
-            <td><?php echo anchor('administrator/krs/delete/'.$krs->id_krs,'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
+            <td width="20px"><?php echo anchor('administrator/krs/update/'.$krs->id_krs,'<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
+            <td width="20px"><?php echo anchor('administrator/krs/delete/'.$krs->id_krs,'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
         </tr>
 
         <?php endforeach; ?>
