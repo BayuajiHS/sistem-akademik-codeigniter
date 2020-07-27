@@ -108,6 +108,27 @@
             }
         }
 
+        public function simpan_nilai()
+        {
+            $query = array();
+            $id_krs = $_POST['id_krs'];
+            $nilai  = $_POST['nilai'];
+
+            for($i=0; $i<sizeof($id_krs); $i++)
+            {
+                $this->db->set('nilai',$nilai[$i])->where('id_krs',$id_krs[$i])->update('krs');
+            }
+
+            $data   = array(
+                'id_krs'    => $id_krs
+            );
+
+            $this->load->view('template_administrator/header');
+            $this->load->view('template_administrator/sidebar');
+            $this->load->view('administrator/daftar_nilai',$data);
+            $this->load->view('template_administrator/footer');
+        }
+
         public function __rulesNilai()
         {
             $this->form_validation->set_rules('kode_matakuliah','kode_matakuliah','required',[

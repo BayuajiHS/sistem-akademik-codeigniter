@@ -83,7 +83,7 @@
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $ln->nim ?></td>
                     <td><?php echo $ln->nama_lengkap ?></td>
-                    <input type="hidden" name="id_krs[]" value="<?php $ln->id_krs ?>">
+                    <input type="hidden" name="id_krs[]" value="<?php echo $ln->id_krs ?>">
                     <td width="85px"><input type="text" name="nilai[]" class="form-control" value="<?php echo $ln->nilai ?>"></td>
                 </tr>
                 <?php endforeach; ?>
