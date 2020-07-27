@@ -61,6 +61,64 @@
             $this->load->view('template_administrator/footer');
         }
 
+        public function nilai()
+        {
+            $data = array(
+                'kode_matakuliah'   => set_value('kode_matakuliah'),
+                'id_thn_akad'       => set_value('id_thn_akad'),
+            );
+
+            $this->load->view('template_administrator/header');
+            $this->load->view('template_administrator/sidebar');
+            $this->load->view('administrator/input_nilai_form',$data);
+            $this->load->view('template_administrator/footer');
+        }
+
+        public function input_nilai_aksi()
+        {
+            $this->__rulesNilai();
+
+            if($this->form_validation->run() == FALSE)
+            {
+                $this->nilai();
+            }
+            else
+            {
+                $kode_matakuliah = $this->input->post('kode_matakuliah');
+                $id_thn_akad     = $this->input->post('id_thn_akad');
+
+                $this->db->select("k.id_krs, k.nim, m.nama_lengkap, k.nilai, d.nama_matakuliah");
+                $this->db->from("krs as k");
+                $this->db->join("mahasiswa as m","m.nim=k.nim");
+                $this->db->join("matakuliah as d","k.kode_matakuliah=d.kode_matakuliah");
+                $this->db->where("k.id_thn_akad", $id_thn_akad);
+                $this->db->where("k.kode_matakuliah", $kode_matakuliah);
+                $query = $this->db->get()->result();
+
+                $data = array(
+                    'list_nilai'        => $query,
+                    'kode_matakuliah'   => $kode_matakuliah,
+                    'id_thn_akad'       => $id_thn_akad
+                );
+
+                $this->load->view('template_administrator/header');
+                $this->load->view('template_administrator/sidebar');
+                $this->load->view('administrator/form_nilai',$data);
+                $this->load->view('template_administrator/footer');
+            }
+        }
+
+        public function __rulesNilai()
+        {
+            $this->form_validation->set_rules('kode_matakuliah','kode_matakuliah','required',[
+                'required'  => 'Kode Matakuliah wajib diisi!'
+            ]);
+
+            $this->form_validation->set_rules('id_thn_akad','id_thn_akad','required',[
+                'required'  => 'Tahun Akademik wajib diisi!'
+            ]);
+        }
+
         public function __rules()
         {
             $this->form_validation->set_rules('nim','nim','required',[

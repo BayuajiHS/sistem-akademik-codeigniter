@@ -35,5 +35,14 @@
             $this->db->where($where);
             $this->db->delete($table);
         }
+
+        public $id      = 'kode_matakuliah';
+        public $table   = 'matakuliah';
+
+        public function get_by_id($id)
+        {
+            $this->db->where($this->id, $id);
+            return $this->db->get($this->table)->row();
+        }
     }
 ?>
