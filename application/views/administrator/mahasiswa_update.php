@@ -66,7 +66,7 @@
                 <img width="250px" height="250px" class="mb-3" src="<?php echo base_url ('assets/uploads/').$dt->photo ?>" alt="">
             <?php endforeach; ?><br>
             <label>FOTO</label><br>
-            <input type="file" name="userfile" value="<?php echo $dt->photo ?>">
+            <input type="file" name="userfile" value="<?php echo $mhs->photo ?>">
         </div>
 
         <button type="submit" class="btn btn-sm btn-primary mb-3">Simpan</button>

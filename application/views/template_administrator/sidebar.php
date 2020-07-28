@@ -43,7 +43,7 @@
           <a class="collapse-item" href="<?php echo base_url('administrator/khs/nilai')?>">Input Nilai</a>
           <a class="collapse-item" href="<?php echo base_url('administrator/khs') ?>">KHS</a>
           <a class="collapse-item" href="<?php echo base_url('administrator/transkrip_nilai') ?>">Cetak Transkrip</a>
-          <a class="collapse-item" href="cards.html">Dosen</a>
+          <a class="collapse-item" href="<?php echo base_url('administrator/dosen') ?>">Dosen</a>
         </div>
       </div>
     </li>
