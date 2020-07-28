@@ -24,4 +24,38 @@
 
         return $skor;
     }
+
+    function cekNilai($nim,$kode_matakuliah,$nilKhs)
+    {
+        $nilai = get_instance();
+        $nilai->load->model('transkrip_model');
+
+        $nilai->db->select("*");
+        $nilai->db->from("transkrip_nilai");
+        $nilai->db->where("nim",$nim);
+        $nilai->db->where("kode_matakuliah",$kode_matakuliah);
+
+        $query = $nilai->db->get()->row();
+
+        if($query != NULL)
+        {
+            if($nilKhs < $query->nilai)
+            {
+                $nilai->db->set('nilai',$nilKhs)
+                          ->where('nim',$nim)
+                          ->where('kode_matakuliah',$kode_matakuliah)
+                          ->update('transkrip_nilai'); 
+            }
+        }
+        else
+        {
+            $data = array(
+                'nim'               => $nim,
+                'nilai'             => $nilKhs,
+                'kode_matakuliah'   => $kode_matakuliah
+            );
+
+            $nilai->transkrip_model->insert($data);
+        }
+    }
 ?>
