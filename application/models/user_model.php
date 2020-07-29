@@ -24,5 +24,17 @@
             $this->db->where($where);
             return $this->db->get($this->table)->result();
         }
+
+        public function update_data($where,$data)
+        {
+            $this->db->where($where);
+            $this->db->update($this->table, $data);
+        }
+
+        public function hapus_data($where)
+        {
+            $this->db->where($where);
+            $this->db->delete($this->table);
+        }
     }
 ?>

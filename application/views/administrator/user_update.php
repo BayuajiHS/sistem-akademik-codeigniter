@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="">Password</label>
-            <input type="password" name="password" class="form-control" value="<?php echo $us->password ?>">
+            <input type="password" name="password" class="form-control">
         </div>
         <div class="form-group">
             <label for="">Email</label>
@@ -36,10 +36,10 @@
         <div class="form-group">
             <label for="">Blokir</label>
             <select name="blokir" class="form-control">
-                <?php if ($level == 'Y') { ?>
+                <?php if ($us->level == 'Y') { ?>
                     <option value="Y" selected>Y</option>
                     <option value="N">N</option>
-                <?php } elseif($level == 'N') { ?>
+                <?php } elseif($us->level == 'N') { ?>
                     <option value="Y">Y</option>
                     <option value="N" selected>N</option>
                 <?php } else { ?>
