@@ -66,9 +66,6 @@
       Baca Selengkapnya
     </button>
   </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
 </div>
 
 <!-- Button trigger modal -->
