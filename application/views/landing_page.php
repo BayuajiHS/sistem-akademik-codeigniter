@@ -100,3 +100,17 @@
     </div>
   </div>
 </div>
+
+<div class="row m-4">
+
+  <?php foreach($informasi as $inf) : ?>
+  <div class="card ml-5" style="width: 18rem;">
+    <span class="display-2 text-center text-info"><i class="<?php echo $inf->icon ?>"></i></span>
+    <div class="card-body">
+      <h5 class="card-title"><?php echo $inf->judul_informasi ?></h5>
+      <p class="card-text"><?php echo $inf->isi_informasi ?><br><br></p>
+      <a href="#" class="btn btn-primary">Selengkapnya</a>
+    </div>
+  </div>
+  <?php endforeach; ?>
+</div>
