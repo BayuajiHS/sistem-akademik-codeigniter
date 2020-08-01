@@ -102,7 +102,6 @@
 </div>
 
 <div class="row m-4">
-
   <?php foreach($informasi as $inf) : ?>
   <div class="card ml-5" style="width: 18rem;">
     <span class="display-2 text-center text-info"><i class="<?php echo $inf->icon ?>"></i></span>
@@ -114,3 +113,31 @@
   </div>
   <?php endforeach; ?>
 </div>
+<hr>
+<form action="<?php echo base_url('landing_page/kirim_pesan_aksi')?>" method="post">
+    <div class="row m-4">
+      <div class="col-md-8">
+        <div class="alert alert-primary"><i class="fas fa-envelope-open-text"></i> HUBUNGI KAMI</div>
+
+        <?php echo $this->session->flashdata('pesan') ?>
+
+        <div class="form-group">
+          <label>NAMA</label>
+          <input type="text" name="nama" class="form-control">
+          <?php echo form_error('nama','<div class="text-danger small ml-3">','</div>') ?>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" class="form-control">
+          <?php echo form_error('email','<div class="text-danger small ml-3">','</div>') ?>
+        </div>
+        <div class="form-group">
+          <label>ISI PESAN</label>
+          <textarea name="pesan" class="form-control" cols="20" rows="5"></textarea>
+          <?php echo form_error('pesan','<div class="text-danger small ml-3">','</div>') ?>
+
+          <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+        </div>
+      </div>
+    </div>
+</form>
